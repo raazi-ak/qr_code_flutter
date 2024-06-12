@@ -14,8 +14,11 @@ This Flutter project is a simple and efficient QR Code Reader application. The a
 
 ## Screenshots
 
+### Main Screen
 ![Screen1](screenshots/Screen1.png?raw=true "Main Screen")
+### Result Screen
 ![Screen2](screenshots/Screen2.png?raw=true "Result Screen")
+### Acitivity Blocked State
 ![Screen3](screenshots/Screen3.png?raw=true "Acitivity Blocked State")
 
 # Getting Started
