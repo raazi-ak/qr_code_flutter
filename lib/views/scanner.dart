@@ -15,6 +15,7 @@ class QRScanner extends StatefulWidget {
 class _QRScannerState extends State<QRScanner> {
   bool isScanCompleted = false;
 
+  // Method to reset the scan status
   void returnToScanner() {
     setState(() {
       isScanCompleted = false;
@@ -26,19 +27,21 @@ class _QRScannerState extends State<QRScanner> {
     final size = MediaQuery.of(context).size;
     final height = size.height;
     final width = size.width;
-    // final MobileScannerController controller = MobileScannerController(
-    //     autoStart: true, detectionSpeed: DetectionSpeed.unrestricted);
-    // StreamSubscription<Object?> _streamSubscription;
+
+    // Widget structure for the QR scanner
     return Container(
       width: width * 0.85,
       height: height * 0.45,
       child: Stack(
         children: [
+          // MobileScanner widget for scanning QR codes
           MobileScanner(
             onDetect: (barcodes) async {
               if (!isScanCompleted) {
+                // Get the raw value of the scanned QR code
                 String? raw = barcodes.barcodes[0].rawValue ?? "NULL";
                 isScanCompleted = true;
+                // Show an alert dialog with the scanned QR code content
                 await showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -52,6 +55,7 @@ class _QRScannerState extends State<QRScanner> {
                           child: Text(raw),
                         ),
                         actions: [
+                          // Button to copy the QR code content to the clipboard
                           TextButton(
                               onPressed: () async {
                                 await Clipboard.setData(
@@ -67,6 +71,7 @@ class _QRScannerState extends State<QRScanner> {
                                 "Copy",
                                 style: TextStyle(color: Colors.black),
                               )),
+                          // Button to dismiss the alert dialog
                           TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop();
@@ -78,10 +83,12 @@ class _QRScannerState extends State<QRScanner> {
                         ],
                       );
                     });
+                // Reset the scan status to allow scanning again
                 returnToScanner();
               }
             },
           ),
+          // Overlay for the QR scanner to highlight the scanning area
           QRScannerOverlay(
             borderColor: Colors.black,
             overlayColor: const Color.fromARGB(255, 231, 227, 207),
