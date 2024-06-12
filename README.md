@@ -1,6 +1,5 @@
 # QR Code Scanner (Flutter)
-
-A brief description of what this project does and who it's for
+This Flutter project is a simple and efficient QR Code Reader application. The application scans QR codes, displays the decoded text in a pop-up dialog, and allows the user to copy the decoded text to the clipboard with a single tap.
 
 ## Overview
 
